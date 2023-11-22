@@ -145,7 +145,7 @@ fn main() -> anyhow::Result<()> {
                 let dir = dir.unwrap();
                 if dir.metadata()?.is_dir() {
                     println!("- {}/", dir.file_name().to_str().unwrap());
-                    print_dir(1, &dir.path())?;
+                    print_dir(2, &dir.path())?;
                 } else {
                     println!("- {}", dir.file_name().to_str().unwrap());
                 }
