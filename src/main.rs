@@ -103,7 +103,7 @@ fn main() -> anyhow::Result<()> {
                 .trim()
                 .into();
 
-            fs_extra::dir::copy(&config, curr_dir, &CopyOptions::new().copy_inside(true))?;
+            fs_extra::dir::copy(&config, curr_dir, &CopyOptions::new().copy_inside(true).content_only(true))?;
             config.pop();
         }
         Command::List => {
@@ -127,8 +127,11 @@ fn main() -> anyhow::Result<()> {
                 config.pop();
             }
 
+            let opts = CopyOptions::new()
+                .copy_inside(true);
+
             for directory in paths.directories {
-                fs_extra::dir::copy(directory, &config, &CopyOptions::new().copy_inside(true).content_only(true))?;
+                fs_extra::dir::copy(directory, &config, &opts)?;
             }
         }
         Command::Remove { name } => {
