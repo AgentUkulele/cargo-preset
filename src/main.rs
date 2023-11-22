@@ -100,6 +100,7 @@ fn main() -> anyhow::Result<()> {
                     .output()?
                     .stdout
                 )?
+                .trim()
                 .into();
 
             fs_extra::dir::copy(&config, curr_dir, &CopyOptions::new().copy_inside(true))?;
